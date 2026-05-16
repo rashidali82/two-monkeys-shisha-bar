@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Two Monkeys Shisha Bar – Rüsselsheim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Smoke canvas -->
+<canvas id="smokeCanvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="asset/TMLogo.png" alt="Two Monkeys Logo" style="height:45px;width:auto;object-fit:contain;">
+<div style="display:flex;flex-direction:column;line-height:1.1;">
+  <span class="nav-logo-two" style="font-family:'Playfair Display',serif;font-size:0.85rem;font-weight:900;font-style:italic;letter-spacing:0.15em;text-transform:uppercase;">Two</span>
+  <span class="nav-logo-monkeys" style="font-family:'Playfair Display',serif;font-size:0.85rem;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;">Monkeys</span>
+</div> <span class="nav-logo-two"></span> <span class="nav-logo-monkeys"></span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeMenu()">Unsere Geschichte</a></li>
+    <li><a href="#flavours" onclick="closeMenu()">Sorten</a></li>
+    <li><a href="#menu" onclick="closeMenu()">Speisekarte</a></li>
+    <li><a href="#features" onclick="closeMenu()">Info</a></li>
+    <li><a href="#location" onclick="closeMenu()">Anfahrt</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="tel:+4961427987373" class="btn-call-nav" title="Jetzt anrufen">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      Anrufen
+    </a>
+    <a href="#" class="btn-reserve-nav" onclick="openModal(event)">🪑 Tisch reservieren</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+
+  <!-- CSS SMOKE PARTICLES -->
+  <div class="smoke-container">
+    <div class="smoke-particle"></div>
+    <div class="smoke-particle"></div>
+    <div class="smoke-particle"></div>
+    <div class="smoke-particle"></div>
+    <div class="smoke-particle"></div>
+    <div class="smoke-particle"></div>
+    <div class="smoke-particle"></div>
+    <div class="smoke-particle"></div>
+    <div class="smoke-particle"></div>
+    <div class="smoke-particle"></div>
+  </div>
+  <svg class="leaf" style="top:-10%;left:-5%;width:400px;transform:rotate(-20deg);" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 380 C100 380 180 200 100 20 C20 200 100 380 100 380Z" fill="#1a2e1c"/>
+    <line x1="100" y1="380" x2="100" y2="20" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
+    <line x1="100" y1="200" x2="150" y2="120" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+    <line x1="100" y1="250" x2="60" y2="160" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+    <line x1="100" y1="300" x2="140" y2="220" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+  </svg>
+  <svg class="leaf" style="top:-5%;right:-5%;width:350px;transform:rotate(15deg) scaleX(-1);" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 380 C100 380 180 200 100 20 C20 200 100 380 100 380Z" fill="#1a2e1c"/>
+    <line x1="100" y1="380" x2="100" y2="20" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
+  </svg>
+
+  <svg class="monkey-left" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="150" cy="280" rx="70" ry="90" fill="#c9a84c"/>
+    <circle cx="150" cy="170" r="60" fill="#c9a84c"/>
+    <circle cx="92" cy="165" r="22" fill="#c9a84c"/>
+    <circle cx="208" cy="165" r="22" fill="#c9a84c"/>
+    <circle cx="92" cy="165" r="13" fill="#8b3a2a" opacity="0.5"/>
+    <circle cx="208" cy="165" r="13" fill="#8b3a2a" opacity="0.5"/>
+    <ellipse cx="150" cy="185" rx="38" ry="30" fill="#8b3a2a" opacity="0.4"/>
+    <circle cx="134" cy="162" r="8" fill="#0a0a07"/>
+    <circle cx="166" cy="162" r="8" fill="#0a0a07"/>
+    <circle cx="136" cy="160" r="3" fill="white"/>
+    <circle cx="168" cy="160" r="3" fill="white"/>
+    <path d="M82 250 Q40 220 20 260 Q30 300 82 290" fill="#c9a84c"/>
+    <path d="M218 250 Q260 220 280 260 Q270 300 218 290" fill="#c9a84c"/>
+    <path d="M120 360 Q110 390 90 400" stroke="#c9a84c" stroke-width="28" stroke-linecap="round" fill="none"/>
+    <path d="M180 360 Q190 390 210 400" stroke="#c9a84c" stroke-width="28" stroke-linecap="round" fill="none"/>
+    <path d="M150 370 Q200 390 220 360 Q240 330 210 310" stroke="#c9a84c" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <path d="M218 260 Q250 250 260 230 Q270 210 255 200" stroke="#0a0a07" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.7"/>
+    <circle cx="255" cy="195" r="12" fill="#0a0a07" opacity="0.7"/>
+  </svg>
+
+  <svg class="monkey-right" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="150" cy="280" rx="70" ry="90" fill="#c9a84c"/>
+    <circle cx="150" cy="170" r="60" fill="#c9a84c"/>
+    <circle cx="92" cy="165" r="22" fill="#c9a84c"/>
+    <circle cx="208" cy="165" r="22" fill="#c9a84c"/>
+    <circle cx="92" cy="165" r="13" fill="#8b3a2a" opacity="0.5"/>
+    <circle cx="208" cy="165" r="13" fill="#8b3a2a" opacity="0.5"/>
+    <ellipse cx="150" cy="185" rx="38" ry="30" fill="#8b3a2a" opacity="0.4"/>
+    <circle cx="134" cy="162" r="8" fill="#0a0a07"/>
+    <circle cx="166" cy="162" r="8" fill="#0a0a07"/>
+    <circle cx="136" cy="160" r="3" fill="white"/>
+    <circle cx="168" cy="160" r="3" fill="white"/>
+    <path d="M82 250 Q40 220 20 260 Q30 300 82 290" fill="#c9a84c"/>
+    <path d="M218 250 Q260 220 280 260 Q270 300 218 290" fill="#c9a84c"/>
+    <path d="M120 360 Q110 390 90 400" stroke="#c9a84c" stroke-width="28" stroke-linecap="round" fill="none"/>
+    <path d="M180 360 Q190 390 210 400" stroke="#c9a84c" stroke-width="28" stroke-linecap="round" fill="none"/>
+    <path d="M150 370 Q200 390 220 360 Q240 330 210 310" stroke="#c9a84c" stroke-width="12" stroke-linecap="round" fill="none"/>
+  </svg>
+
+  <div class="hero-eyebrow">Rüsselsheim · Bahnhof</div>
+  <h1 class="hero-title">
+    <span class="word-two">Two</span>
+    <span class="word-monkeys">Monkeys</span>
+  </h1>
+  <p class="hero-subtitle">Shisha Bar &amp; Lounge</p>
+  <div class="hero-slogan">„Together we smoke better."</div>
+  <div class="hero-divider"></div>
+  <div class="hero-cta">
+    <a href="#flavours" class="btn-primary">Sorten entdecken</a>
+    <a href="#" class="btn-reserve" onclick="openModal(event)">🪑 Tisch reservieren</a>
+    <a href="#location" class="btn-outline">Anfahrt</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scrollen</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP 1 -->
+<div id="strip">
+  <div class="strip-inner" id="stripInner">
+    <span class="strip-item"><span class="strip-dot"></span>Premium Shisha-Sorten</span>
+    <span class="strip-item"><span class="strip-dot"></span>Exotische Cocktails &amp; Getränke</span>
+    <span class="strip-item"><span class="strip-dot"></span>Lounge-Atmosphäre &amp; gute Musik</span>
+    <span class="strip-item"><span class="strip-dot"></span>Gruppenreservierungen willkommen</span>
+    <span class="strip-item"><span class="strip-dot"></span>Am Hauptbahnhof Rüsselsheim</span>
+    <span class="strip-item"><span class="strip-dot"></span>Täglich bis spät in die Nacht geöffnet</span>
+    <span class="strip-item"><span class="strip-dot"></span>Premium Shisha-Sorten</span>
+    <span class="strip-item"><span class="strip-dot"></span>Exotische Cocktails &amp; Getränke</span>
+    <span class="strip-item"><span class="strip-dot"></span>Lounge-Atmosphäre &amp; gute Musik</span>
+    <span class="strip-item"><span class="strip-dot"></span>Gruppenreservierungen willkommen</span>
+    <span class="strip-item"><span class="strip-dot"></span>Am Hauptbahnhof Rüsselsheim</span>
+    <span class="strip-item"><span class="strip-dot"></span>Täglich bis spät in die Nacht geöffnet</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-frame">
+        <img src="asset/photo1.jpg" alt="Two Monkeys Bar" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;transform:scale(1.08);transition:transform 8s ease-out;filter:brightness(0.50) contrast(1.10) saturate(0.75) hue-rotate(10deg) sepia(0.15);">
+
+    </div>
+    <div class="about-badge">SEIT<br>2015</div>
+  </div>
+  <div class="about-text reveal">
+    <div class="section-label">Unsere Geschichte</div>
+    <h2 class="section-title">Wo der Dschungel<br><em>auf die Lounge trifft</em></h2>
+    <p class="section-body">
+      Two Monkeys ist mehr als eine Shisha-Bar — es ist ein Zufluchtsort. Direkt am Rüsselsheimer Hauptbahnhof haben wir einen Ort geschaffen, an dem jeder Zug eine Geschichte erzählt, jede Sorte neue Welten öffnet und jeder Abend zu einer Erinnerung wird.
+      <br><br>
+      Wie unsere zwei Affen, die frei durch das Leben schwingen, glauben wir an die Kunst des Loslassens. Lehne dich zurück. Atme tief durch. Lass den Rauch ziehen.
+    </p>
+    <div class="hero-divider" style="margin: 2rem 0; width:80px;"></div>
+    <div style="display:flex;gap:2.5rem;">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--gold);">50+</div>
+        <div style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:rgba(253,246,227,0.5);text-transform:uppercase;">Sorten</div>
+      </div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--gold);">7</div>
+        <div style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:rgba(253,246,227,0.5);text-transform:uppercase;">Nächte pro Woche</div>
+      </div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--gold);">∞</div>
+        <div style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:rgba(253,246,227,0.5);text-transform:uppercase;">Gute Stimmung</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLAVOURS -->
+<section id="flavours">
+  <div class="section-label">Unser Angebot</div>
+  <h2 class="section-title reveal">Unsere <em>Signature-Sorten</em></h2>
+  <p class="reveal" style="font-style:italic;font-size:1.1rem;color:rgba(253,246,227,0.5);margin-bottom:4rem;">Handverlesen, erstklassig, unvergesslich.</p>
+  <div class="flavours-grid reveal">
+    <div class="flavour-card">
+      <div class="flavour-icon">🍑</div>
+      <div class="flavour-name">Jungle Peach</div>
+      <div class="flavour-desc">Süße Pfirsiche treffen tropische Brise</div>
+    </div>
+    <div class="flavour-card">
+      <div class="flavour-icon">🍇</div>
+      <div class="flavour-name">Grape Alchemy</div>
+      <div class="flavour-desc">Dunkle Trauben mit eiskaltem Abgang</div>
+    </div>
+    <div class="flavour-card">
+      <div class="flavour-icon">🫐</div>
+      <div class="flavour-name">Blue Mist</div>
+      <div class="flavour-desc">Wilde Heidelbeere mit minzigem Ausklang</div>
+    </div>
+    <div class="flavour-card">
+      <div class="flavour-icon">🍋</div>
+      <div class="flavour-name">Lemon Rush</div>
+      <div class="flavour-desc">Spritzige Zitrus mit kühlem Unterton</div>
+    </div>
+    <div class="flavour-card">
+      <div class="flavour-icon">🌹</div>
+      <div class="flavour-name">Rose Garden</div>
+      <div class="flavour-desc">Zarte Blüten, samtweicher Rauch</div>
+    </div>
+    <div class="flavour-card">
+      <div class="flavour-icon">🍀</div>
+      <div class="flavour-name">Monkey Mint</div>
+      <div class="flavour-desc">Unsere Signature-Minzmischung — ein Klassiker</div>
+    </div>
+    <div class="flavour-card">
+      <div class="flavour-icon">🥭</div>
+      <div class="flavour-name">Mango Tango</div>
+      <div class="flavour-desc">Reife Alphonso-Mango, Sonnenschein in jedem Zug</div>
+    </div>
+    <div class="flavour-card">
+      <div class="flavour-icon">🍫</div>
+      <div class="flavour-name">Dark Forest</div>
+      <div class="flavour-desc">Tiefes Kakao-, Kirsch- und Kaffeearoma</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP 2 -->
+<div id="strip">
+  <div class="strip-inner">
+    <span class="strip-item"><span class="strip-dot"></span>Two Monkeys Shisha Bar</span>
+    <span class="strip-item"><span class="strip-dot"></span>Rüsselsheim am Main</span>
+    <span class="strip-item"><span class="strip-dot"></span>Erstklassiges Erlebnis</span>
+    <span class="strip-item"><span class="strip-dot"></span>Shisha-Kenner seit Tag 1</span>
+    <span class="strip-item"><span class="strip-dot"></span>Entspannen &amp; Genießen</span>
+    <span class="strip-item"><span class="strip-dot"></span>Two Monkeys Shisha Bar</span>
+    <span class="strip-item"><span class="strip-dot"></span>Rüsselsheim am Main</span>
+    <span class="strip-item"><span class="strip-dot"></span>Erstklassiges Erlebnis</span>
+    <span class="strip-item"><span class="strip-dot"></span>Shisha-Kenner seit Tag 1</span>
+    <span class="strip-item"><span class="strip-dot"></span>Entspannen &amp; Genießen</span>
+  </div>
+</div>
+
+
+<!-- MENU -->
+<section id="menu">
+  <div class="menu-inner">
+    <div class="menu-header reveal">
+      <div>
+        <div class="section-label">Speisekarte</div>
+        <h2 class="section-title">Für jeden<br><em>etwas dabei</em></h2>
+      </div>
+      <div class="menu-tabs">
+        <button class="menu-tab active" onclick="switchTab('shisha')">Shisha</button>
+        <button class="menu-tab" onclick="switchTab('drinks')">Getränke</button>
+        <button class="menu-tab" onclick="switchTab('snacks')">Snacks</button>
+      </div>
+    </div>
+
+    <div class="menu-items active reveal" id="tab-shisha">
+      <div class="menu-item"><div class="menu-item-info"><h4>Monkey Mint</h4><p>Unsere Signature-Minze — klassisch &amp; klar</p></div><span class="menu-item-price">€12</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Jungle Peach</h4><p>Tropischer Pfirsich mit honigigem Abgang</p></div><span class="menu-item-price">€13</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Blue Mist</h4><p>Heidelbeere &amp; Eis — die perfekte Abkühlung</p></div><span class="menu-item-price">€13</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Dark Forest</h4><p>Kakao, Kirsche &amp; geröstete Kaffeenoten</p></div><span class="menu-item-price">€14</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Grape Alchemy</h4><p>Kräftige Traube, eiskalter Ausklang</p></div><span class="menu-item-price">€13</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Doppelter Apfel</h4><p>Der zeitlose orientalische Klassiker</p></div><span class="menu-item-price">€12</span></div>
+    </div>
+
+    <div class="menu-items" id="tab-drinks">
+      <div class="menu-item"><div class="menu-item-info"><h4>Monkey-Limonade</h4><p>Frische Zitrone, Basilikum &amp; Sprudelwasser</p></div><span class="menu-item-price">€5</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Jungle Sunrise</h4><p>Mango, Passionsfrucht &amp; Grenadine</p></div><span class="menu-item-price">€7</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Marokkanischer Minztee</h4><p>Traditioneller Gunpowder-Grüntee mit Minze</p></div><span class="menu-item-price">€4</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Türkischer Kaffee</h4><p>Kräftig, stark &amp; serviert mit Lokum</p></div><span class="menu-item-price">€3,50</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Midnight Mojito</h4><p>Johannisbeere, Limette &amp; frische Minze – alkoholfrei</p></div><span class="menu-item-price">€7</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Ayran</h4><p>Gesalzenes Joghurtgetränk — kühl &amp; erfrischend</p></div><span class="menu-item-price">€3</span></div>
+    </div>
+
+    <div class="menu-items" id="tab-snacks">
+      <div class="menu-item"><div class="menu-item-info"><h4>Gemischte Nüsse</h4><p>Geröstete Cashews, Mandeln &amp; Pistazien</p></div><span class="menu-item-price">€6</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Jungle Mezze</h4><p>Hummus, Pita, Oliven &amp; saisonale Eingelegte</p></div><span class="menu-item-price">€9</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Lokum-Auswahl</h4><p>Rose, Pistazie &amp; Granatapfel — türkisches Konfekt</p></div><span class="menu-item-price">€5</span></div>
+      <div class="menu-item"><div class="menu-item-info"><h4>Baklava</h4><p>Blätterteig, Honig &amp; gehackte Walnüsse</p></div><span class="menu-item-price">€5</span></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-inner">
+    <div class="section-label" style="text-align:center;">Gut zu wissen</div>
+    <h2 class="section-title reveal" style="text-align:center;margin-bottom:3.5rem;">Wir haben alles<br><em>für dich</em></h2>
+    <div class="features-grid reveal">
+
+      <div class="features-card">
+        <div class="features-card-header">
+          <span class="features-card-icon">♿</span>
+          <h3 class="features-card-title">Barrierefreiheit</h3>
+        </div>
+        <ul class="features-list">
+          <li>
+            <span class="feat-icon">🚪</span>
+            <div>
+              <strong>Rollstuhlgerechter Eingang</strong>
+              <p>Stufenfreier Zugang für alle Gäste</p>
+            </div>
+          </li>
+          <li>
+            <span class="feat-icon">💺</span>
+            <div>
+              <strong>Rollstuhlgerechte Sitzplätze</strong>
+              <p>Großzügige Sitzbereiche mit ausreichend Platz</p>
+            </div>
+          </li>
+          <li>
+            <span class="feat-icon unavailable">🅿️</span>
+            <div>
+              <strong class="unavailable-text">Kein Parkplatz vorhanden</strong>
+              <p>Bitte öffentliche Verkehrsmittel oder Straßenparkplätze nutzen</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="features-card">
+        <div class="features-card-header">
+          <span class="features-card-icon">🏠</span>
+          <h3 class="features-card-title">Serviceoptionen</h3>
+        </div>
+        <ul class="features-list">
+          <li>
+            <span class="feat-icon unavailable">🛵</span>
+            <div>
+              <strong class="unavailable-text">Kein Lieferservice</strong>
+              <p>Nur Vor-Ort-Genuss — wir freuen uns auf deinen Besuch</p>
+            </div>
+          </li>
+          <li>
+            <span class="feat-icon">🏠</span>
+            <div>
+              <strong>Vor-Ort-Genuss</strong>
+              <p>Das volle Lounge-Erlebnis — komm, sitz, entspann dich</p>
+            </div>
+          </li>
+          <li>
+            <span class="feat-icon">🎉</span>
+            <div>
+              <strong>Private Veranstaltungen</strong>
+              <p>Miete die Bar exklusiv für deinen besonderen Anlass</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="features-card">
+        <div class="features-card-header">
+          <span class="features-card-icon">💳</span>
+          <h3 class="features-card-title">Zahlungsmittel</h3>
+        </div>
+        <ul class="features-list">
+          <li>
+            <span class="feat-icon">💳</span>
+            <div>
+              <strong>EC-Karten</strong>
+              <p>Visa Debit, Maestro &amp; alle gängigen Debitkarten</p>
+            </div>
+          </li>
+          <li>
+            <span class="feat-icon">📱</span>
+            <div>
+              <strong>NFC-Mobilzahlung</strong>
+              <p>Apple Pay, Google Pay &amp; kontaktlos</p>
+            </div>
+          </li>
+          <li>
+            <span class="feat-icon">💰</span>
+            <div>
+              <strong>Kreditkarten</strong>
+              <p>Visa, Mastercard &amp; weitere werden akzeptiert</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ATMOSPHERE -->
+<section id="atmosphere">
+  <div class="atmosphere-inner">
+    <div class="atm-panels reveal">
+      <div class="atm-panel" style="background:linear-gradient(135deg,#1a2e1c,#0d1a0f);">
+        <span class="atm-panel-emoji">🐒🌿</span>
+        <span class="atm-panel-label">Die Dschungel-Lounge</span>
+      </div>
+      <div class="atm-panel" style="background:linear-gradient(135deg,#0d1a0f,#1a2e1c);">
+        <span class="atm-panel-emoji">🕯️</span>
+        <span class="atm-panel-label">Private Nischen</span>
+      </div>
+      <div class="atm-panel" style="background:linear-gradient(135deg,#1a1a0d,#2e2a1a);">
+        <span class="atm-panel-emoji">🎶</span>
+        <span class="atm-panel-label">Musikecke</span>
+      </div>
+    </div>
+    <div class="atm-text reveal">
+      <div class="section-label">Die Atmosphäre</div>
+      <h2 class="section-title">Eine andere Welt<br><em>in Rüsselsheim</em></h2>
+      <p class="section-body">
+        Tritt durch unsere Türen und lass den Alltag hinter dir. Two Monkeys wurde für alle geschaffen, die die feinen Genüsse schätzen — sanftes Licht, bequeme Sitzmöbel und eine Musik, die nie stört, sondern nur bereichert.
+      </p>
+      <div class="atm-features">
+        <div class="atm-feature">
+          <div class="atm-feature-icon">🛋️</div>
+          <div class="atm-feature-text">
+            <h4>Luxuriöse Sitzgelegenheiten</h4>
+            <p>Gepolsterte Lounger, intime Nischen &amp; Gemeinschaftstische</p>
+          </div>
+        </div>
+        <div class="atm-feature">
+          <div class="atm-feature-icon">🎵</div>
+          <div class="atm-feature-text">
+            <h4>Kuratierte Musik</h4>
+            <p>Von Deep House bis orientalischen Beats — immer die perfekte Untermalung</p>
+          </div>
+        </div>
+        <div class="atm-feature">
+          <div class="atm-feature-icon">🍹</div>
+          <div class="atm-feature-text">
+            <h4>Premium-Getränkebar</h4>
+            <p>Cocktails, Mocktails, Tees &amp; Softdrinks — perfekt zur Shisha</p>
+          </div>
+        </div>
+        <div class="atm-feature">
+          <div class="atm-feature-icon">👥</div>
+          <div class="atm-feature-text">
+            <h4>Gruppen- &amp; Eventbuchungen</h4>
+            <p>Reserviere die Bar exklusiv für Geburtstage, Feiern &amp; besondere Anlässe</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PHOTO GALLERY SLIDESHOW -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <div class="section-label" style="text-align:center;">Unsere Welt</div>
+    <h2 class="section-title" style="text-align:center;margin-bottom:0.4rem;">Erlebe die <em>Atmosphäre</em></h2>
+    <p style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(253,246,227,0.45);margin-bottom:0;">Folge uns auf Instagram &amp; Google für die neuesten Bilder</p>
+  </div>
+
+  <!-- MAIN CINEMATIC SLIDESHOW -->
+  <div class="slideshow-wrap reveal">
+
+    <!-- Slides -->
+    <div class="slideshow" id="mainSlideshow">
+
+      <div class="slide active" data-label="Die Lounge" data-sub="Two Monkeys · Rüsselsheim">
+        <!-- 👉 Replace the background-color below with: background-image: url('img/foto1.jpg') -->
+        <div class="slide-bg" style="background:linear-gradient(135deg,#0d2010 0%,#1a3a1c 40%,#0a1a0c 100%);">
+          <div class="slide-placeholder-art">
+            <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" opacity="0.18">
+              <ellipse cx="200" cy="200" rx="90" ry="110" fill="#c9a84c"/>
+              <circle cx="200" cy="110" r="70" fill="#c9a84c"/>
+              <circle cx="148" cy="104" r="26" fill="#c9a84c"/>
+              <circle cx="252" cy="104" r="26" fill="#c9a84c"/>
+              <ellipse cx="200" cy="132" rx="44" ry="34" fill="#8b3a2a" opacity="0.5"/>
+              <circle cx="182" cy="100" r="10" fill="#0a0a07"/>
+              <circle cx="218" cy="100" r="10" fill="#0a0a07"/>
+              <circle cx="184" cy="97" r="3.5" fill="white"/>
+              <circle cx="220" cy="97" r="3.5" fill="white"/>
+              <path d="M200 310 Q260 290 280 250 Q300 210 270 190" stroke="#c9a84c" stroke-width="14" stroke-linecap="round" fill="none"/>
+              <!-- smoke -->
+              <path d="M200 40 Q215 15 200 -10 Q185 -35 200 -60" stroke="#c9a84c" stroke-width="3" fill="none" opacity="0.6" stroke-linecap="round"/>
+              <path d="M220 50 Q238 22 220 -6 Q202 -34 220 -62" stroke="#c9a84c" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
+              <path d="M180 45 Q162 18 180 -9" stroke="#c9a84c" stroke-width="2" fill="none" opacity="0.25" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-tag">📸 Foto 1</div>
+          <div class="slide-label">Die Lounge</div>
+          <div class="slide-sub">Two Monkeys · Rüsselsheim</div>
+        </div>
+      </div>
+
+      <div class="slide" data-label="Shisha &amp; Rauch" data-sub="Premium Qualität · Handverlesen">
+        <div class="slide-bg" style="background-image:url('asset/shisha.jpg'); background-size:cover; background-position:center; filter:brightness(0.75) contrast(1.10) saturate(0.80);">
+          <div class="slide-placeholder-art">
+            <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" width="260" opacity="0.2">
+              <rect x="170" y="60" width="60" height="180" rx="8" fill="#c9a84c"/>
+              <ellipse cx="200" cy="60" rx="40" ry="16" fill="#a07a30"/>
+              <ellipse cx="200" cy="240" rx="50" ry="18" fill="#a07a30"/>
+              <rect x="188" y="0" width="24" height="62" rx="4" fill="#c9a84c" opacity="0.7"/>
+              <path d="M200 0 Q215 -25 200 -50 Q185 -75 200 -100" stroke="#c9a84c" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/>
+              <path d="M215 -5 Q233 -32 215 -59" stroke="#c9a84c" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+              <path d="M200 240 Q240 260 280 240 Q320 220 310 190" stroke="#c9a84c" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.6"/>
+            </svg>
+          </div>
+        </div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-label">Shisha &amp; Rauch</div>
+          <div class="slide-sub">Premium Qualität · Handverlesen</div>
+        </div>
+        <div class="slide-hint">Ersetze durch: <code>background-image: url('img/foto2.jpg')</code></div>
+      </div>
+
+      <div class="slide" data-label="Abendstimmung" data-sub="Jede Nacht ein Erlebnis">
+        <div class="slide-bg" style="background:linear-gradient(135deg,#0a0a1a 0%,#1a1030 50%,#0d0a07 100%);">
+          <div class="slide-placeholder-art">
+            <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" width="340" opacity="0.15">
+              <circle cx="200" cy="80" r="40" fill="#c9a84c" opacity="0.6"/>
+              <path d="M200 120 L200 280" stroke="#c9a84c" stroke-width="2" opacity="0.3"/>
+              <circle cx="100" cy="140" r="25" fill="#c9a84c" opacity="0.4"/>
+              <circle cx="300" cy="160" r="30" fill="#c9a84c" opacity="0.35"/>
+              <circle cx="60" cy="220" r="18" fill="#c9a84c" opacity="0.25"/>
+              <circle cx="340" cy="240" r="22" fill="#c9a84c" opacity="0.3"/>
+              <rect x="0" y="260" width="400" height="40" fill="#c9a84c" opacity="0.08"/>
+            </svg>
+          </div>
+        </div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-tag">📸 Foto 3</div>
+          <div class="slide-label">Abendstimmung</div>
+          <div class="slide-sub">Jede Nacht ein Erlebnis</div>
+        </div>
+        <div class="slide-hint">Ersetze durch: <code>background-image: url('img/foto3.jpg')</code></div>
+      </div>
+
+      <div class="slide" data-label="Getränke &amp; Cocktails" data-sub="Perfekt zur Shisha">
+        <div class="slide-bg" style="background-image:url('asset/cocktails.jpg'); background-size:cover; background-position:center; filter:brightness(0.75) contrast(1.10) saturate(0.80);">
+          <div class="slide-placeholder-art">
+            <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" width="280" opacity="0.2">
+              <path d="M150 80 L130 260 Q130 280 160 280 L240 280 Q270 280 270 260 L250 80 Z" fill="#c9a84c"/>
+              <path d="M145 130 L255 130" stroke="#0a0a07" stroke-width="2" opacity="0.4"/>
+              <ellipse cx="200" cy="80" rx="52" ry="16" fill="#a07a30"/>
+              <rect x="196" y="20" width="8" height="62" rx="4" fill="#c9a84c" opacity="0.6"/>
+              <circle cx="200" cy="16" r="10" fill="#c9a84c"/>
+              <path d="M200 16 L230 -10" stroke="#c9a84c" stroke-width="3" opacity="0.5"/>
+              <circle cx="234" cy="-13" r="5" fill="#5ecf7a" opacity="0.7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-label">Getränke &amp; Cocktails</div>
+          <div class="slide-sub">Perfekt zur Shisha</div>
+        </div>
+       
+      </div>
+
+      <div class="slide" data-label="Unsere Gäste" data-sub="Together we smoke better">
+        <div class="slide-bg" style="background-image:url('asset/guests.jpg'); background-size:cover; background-position:center; filter:brightness(0.75) contrast(1.10) saturate(0.80);">
+          <div class="slide-placeholder-art">
+            <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" width="360" opacity="0.15">
+              <circle cx="120" cy="140" r="45" fill="#c9a84c"/>
+              <circle cx="200" cy="120" r="55" fill="#c9a84c"/>
+              <circle cx="280" cy="145" r="45" fill="#c9a84c"/>
+              <ellipse cx="120" cy="260" rx="55" ry="60" fill="#c9a84c"/>
+              <ellipse cx="200" cy="270" rx="65" ry="65" fill="#c9a84c"/>
+              <ellipse cx="280" cy="260" rx="55" ry="60" fill="#c9a84c"/>
+            </svg>
+          </div>
+        </div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+         
+          <div class="slide-label">Unsere Gäste</div>
+          <div class="slide-sub">Together we smoke better</div>
+        </div>
+        
+      </div>
+
+    </div><!-- end .slideshow -->
+
+    <!-- Controls -->
+    <button class="slide-btn slide-btn--prev" id="slidePrev" aria-label="Vorheriges Bild">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="slide-btn slide-btn--next" id="slideNext" aria-label="Nächstes Bild">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- Dots -->
+    <div class="slide-dots" id="slideDots">
+      <button class="slide-dot active" onclick="goToSlide(0)"></button>
+      <button class="slide-dot" onclick="goToSlide(1)"></button>
+      <button class="slide-dot" onclick="goToSlide(2)"></button>
+      <button class="slide-dot" onclick="goToSlide(3)"></button>
+      <button class="slide-dot" onclick="goToSlide(4)"></button>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="slide-progress"><div class="slide-progress-bar" id="slideProgressBar"></div></div>
+
+    <!-- Counter -->
+    <div class="slide-counter"><span id="slideCurrentNum">1</span> / <span id="slideTotalNum">5</span></div>
+
+    <!-- Pause/Play -->
+    <button class="slide-playpause" id="slidePlayPause" aria-label="Pause">
+      <svg id="iconPause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      <svg id="iconPlay" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+
+  </div><!-- end .slideshow-wrap -->
+
+  <!-- Thumbnail strip -->
+  <div class="thumb-strip reveal" id="thumbStrip">
+    <div class="thumb active" onclick="goToSlide(0)">
+      <div class="thumb-bg" style="background:linear-gradient(135deg,#0d2010,#1a3a1c);">
+        <span>🌿</span>
+      </div>
+      <span class="thumb-label">Die Lounge</span>
+    </div>
+    <div class="thumb" onclick="goToSlide(1)">
+      <div class="thumb-bg" style="background:linear-gradient(135deg,#1a1206,#2e2010);">
+        <span>💨</span>
+      </div>
+      <span class="thumb-label">Shisha</span>
+    </div>
+    <div class="thumb" onclick="goToSlide(2)">
+      <div class="thumb-bg" style="background:linear-gradient(135deg,#0a0a1a,#1a1030);">
+        <span>✨</span>
+      </div>
+      <span class="thumb-label">Abend</span>
+    </div>
+    <div class="thumb" onclick="goToSlide(3)">
+      <div class="thumb-bg" style="background:linear-gradient(135deg,#1a0d0a,#2e1810);">
+        <span>🍹</span>
+      </div>
+      <span class="thumb-label">Drinks</span>
+    </div>
+    <div class="thumb" onclick="goToSlide(4)">
+      <div class="thumb-bg" style="background:linear-gradient(135deg,#0a1a0c,#162814);">
+        <span>🐒</span>
+      </div>
+      <span class="thumb-label">Gäste</span>
+    </div>
+  </div>
+
+  <!-- Instagram CTA -->
+  <div class="gallery-cta reveal" style="margin-top:2.5rem;">
+    <a href="https://www.instagram.com/twomonkeysbar" target="_blank" class="btn-outline" style="display:inline-flex;align-items:center;gap:0.6rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Mehr auf Instagram ansehen
+    </a>
+  </div>
+
+</section>
+
+<!-- RESERVATION MODAL -->
+<div id="reservationModal" class="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header">
+      <div class="modal-eyebrow">Two Monkeys Shisha Bar</div>
+      <h2 class="modal-title">Tisch <em>reservieren</em></h2>
+      <p class="modal-subtitle">Fülle das Formular aus — wir melden uns zur Bestätigung</p>
+    </div>
+    <form class="reservation-form" id="reservationForm"
+          action="https://formspree.io/f/DEINE_FORMSPREE_ID"
+          method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="res-name">Vollständiger Name *</label>
+          <input type="text" id="res-name" name="name" placeholder="z.B. Max Mustermann" required />
+        </div>
+        <div class="form-group">
+          <label for="res-phone">Telefonnummer *</label>
+          <input type="tel" id="res-phone" name="phone" placeholder="+49 ..." required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="res-email">E-Mail-Adresse</label>
+          <input type="email" id="res-email" name="email" placeholder="deine@email.de" />
+        </div>
+        <div class="form-group">
+          <label for="res-guests">Anzahl der Gäste *</label>
+          <select id="res-guests" name="guests" required>
+            <option value="" disabled selected>Bitte wählen</option>
+            <option value="1">1 Person</option>
+            <option value="2">2 Personen</option>
+            <option value="3">3 Personen</option>
+            <option value="4">4 Personen</option>
+            <option value="5">5 Personen</option>
+            <option value="6">6 Personen</option>
+            <option value="7-10">7–10 Personen</option>
+            <option value="10+">Mehr als 10 Personen</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="res-date">Datum *</label>
+          <input type="date" id="res-date" name="date" required />
+        </div>
+        <div class="form-group">
+          <label for="res-time">Uhrzeit *</label>
+          <select id="res-time" name="time" required>
+            <option value="" disabled selected>Bitte wählen</option>
+            <option>14:00 Uhr</option>
+            <option>15:00 Uhr</option>
+            <option>16:00 Uhr</option>
+            <option>17:00 Uhr</option>
+            <option>18:00 Uhr</option>
+            <option>19:00 Uhr</option>
+            <option>20:00 Uhr</option>
+            <option>21:00 Uhr</option>
+            <option>22:00 Uhr</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group form-group--full">
+        <label for="res-shisha">Lieblings-Shisha-Sorte (optional)</label>
+        <select id="res-shisha" name="shisha">
+          <option value="" selected>Keine Präferenz</option>
+          <option>Monkey Mint</option>
+          <option>Jungle Peach</option>
+          <option>Blue Mist</option>
+          <option>Dark Forest</option>
+          <option>Grape Alchemy</option>
+          <option>Doppelter Apfel</option>
+          <option>Lemon Rush</option>
+          <option>Mango Tango</option>
+          <option>Rose Garden</option>
+        </select>
+      </div>
+      <div class="form-group form-group--full">
+        <label for="res-notes">Besondere Wünsche oder Anmerkungen</label>
+        <textarea id="res-notes" name="notes" rows="3" placeholder="Geburtstag, besondere Anlässe, Sitzpräferenzen..."></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">Reservierung absenden 🐒</button>
+        <p class="form-note">⚠️ Formspree-ID noch nicht gesetzt — bitte später eintragen</p>
+      </div>
+      <div class="form-success" id="formSuccess" style="display:none;">
+        <span>✅</span>
+        <p>Danke! Wir haben deine Anfrage erhalten und melden uns bald zur Bestätigung.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TEAM SECTION -->
+<section id="team">
+  <div class="team-inner">
+    <div class="section-label" style="text-align:center;">Unser Team</div>
+    <h2 class="section-title reveal" style="text-align:center;margin-bottom:0.5rem;">Die <em>Menschen</em> hinter Two Monkeys</h2>
+    <p class="reveal" style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:rgba(253,246,227,0.6);margin-bottom:4rem;">Leidenschaft, Herzlichkeit &amp; Expertise — das sind wir.</p>
+
+    <div class="team-grid reveal">
+
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <!-- Replace with: <img src="asset/team1.jpg" alt="Inhaber"> -->
+          <img src="asset/team1.jpg" alt="Inhaber">
+          <div class="team-social-overlay">
+            <a href="https://www.instagram.com/twomonkeysbar" target="_blank" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">[Name des Inhabers]</h3>
+          <div class="team-role">Inhaber &amp; Gründer</div>
+          <p class="team-bio">Der Kopf hinter Two Monkeys. Mit Leidenschaft für Shisha-Kultur und einem Herz für Rüsselsheim hat er diesen besonderen Ort erschaffen.</p>
+          <div class="team-tags">
+            <span>Gründer</span>
+            <span>Shisha-Experte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <!-- Replace with: <img src="asset/team2.jpg" alt="Barkeeper"> -->
+          <img src="asset/team2.jpg" alt="Barkeeper">
+          <div class="team-social-overlay">
+            <a href="https://www.instagram.com/twomonkeysbar" target="_blank" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">[Name des Barkeepers]</h3>
+          <div class="team-role">Head Barkeeper</div>
+          <p class="team-bio">Meister der Cocktails und Getränkekreationen. Jeder Drink ist ein kleines Kunstwerk — perfekt abgestimmt auf deine Shisha.</p>
+          <div class="team-tags">
+            <span>Cocktails</span>
+            <span>Kreativität</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <!-- Replace with: <img src="asset/team3.jpg" alt="Shisha Master"> -->
+          <img src="asset/team3.jpg" alt="Shisha Master">
+          <div class="team-social-overlay">
+            <a href="https://www.instagram.com/twomonkeysbar" target="_blank" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">[Name des Shisha Masters]</h3>
+          <div class="team-role">Shisha Master</div>
+          <p class="team-bio">Kennt jede Sorte in- und auswendig. Er bereitet jede Shisha mit höchster Sorgfalt zu — für das perfekte Raucherlebnis.</p>
+          <div class="team-tags">
+            <span>Shisha-Profi</span>
+            <span>Flavour-Experte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <!-- Replace with: <img src="asset/team4.jpg" alt="Service"> -->
+          <img src="asset/team4.jpg" alt="Service">
+          <div class="team-social-overlay">
+            <a href="https://www.instagram.com/twomonkeysbar" target="_blank" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">[Name des Service-Mitarbeiters]</h3>
+          <div class="team-role">Service &amp; Gastfreundschaft</div>
+          <p class="team-bio">Immer mit einem Lächeln dabei. Sorgt dafür, dass sich jeder Gast bei Two Monkeys wie zu Hause fühlt.</p>
+          <div class="team-tags">
+            <span>Service</span>
+            <span>Gastfreundschaft</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-inner">
+    <div class="section-label" style="text-align:center;">Was Gäste sagen</div>
+    <h2 class="section-title reveal" style="text-align:center;margin-bottom:0.5rem;">Echte <em>Bewertungen</em></h2>
+    <div class="reviews-rating reveal">
+      <div class="overall-score">4.6</div>
+      <div class="overall-stars">★★★★★</div>
+      <div class="overall-source">Basierend auf Google Maps &amp; Kundenfeedback · 296+ Bewertungen</div>
+    </div>
+    <div class="reviews-grid reveal">
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar">M</div>
+          <div class="review-meta">
+            <div class="review-name">Mohammed A.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-source">Google</div>
+        </div>
+        <p class="review-text">„Beste Bar in Rüsselsheim. Der Service ist top, die Atmosphäre einzigartig. Ich komme immer wieder gerne her!"</p>
+        <div class="review-tags"><span>Atmosphäre ★★★★★</span><span>Service ★★★★★</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar">L</div>
+          <div class="review-meta">
+            <div class="review-name">Lena K.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-source">Google</div>
+        </div>
+        <p class="review-text">„Man spürt die Leidenschaft die dahinter steckt! Hammer Location und ausgezeichnetes Personal, das wirklich Ahnung von Shishas hat."</p>
+        <div class="review-tags"><span>Leidenschaft ❤️</span><span>Personal ★★★★★</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar">T</div>
+          <div class="review-meta">
+            <div class="review-name">Tobias R.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-source">Google</div>
+        </div>
+        <p class="review-text">„Also ich bin fast jeden Tag dort. Muss ich mehr sagen?! Einfach die beste Shisha-Bar weit und breit — Grape Mint ist unschlagbar."</p>
+        <div class="review-tags"><span>Stammgast 🐒</span><span>Grape Mint ★★★★★</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar">S</div>
+          <div class="review-meta">
+            <div class="review-name">Sara N.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-source">Google</div>
+        </div>
+        <p class="review-text">„Echt Klasse! Der Schuppen bringt die Rüsselsheimer Innenstadt wieder zum Leben. Gemischte Leute, tolle Drinks und entspannte Vibes."</p>
+        <div class="review-tags"><span>Drinks ★★★★★</span><span>Vibes 🌿</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar">K</div>
+          <div class="review-meta">
+            <div class="review-name">Kevin B.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-source">Google</div>
+        </div>
+        <p class="review-text">„Super Pfeifen im eigenen Design, super Service. Die beste Shisha-Bar in der Region — direkt am Bahnhof, super erreichbar!"</p>
+        <div class="review-tags"><span>Top Shisha 💨</span><span>Erreichbarkeit ★★★★★</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar">A</div>
+          <div class="review-meta">
+            <div class="review-name">Ayse D.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-source">Google</div>
+        </div>
+        <p class="review-text">„Beste griechische Shisha-Bar! Große Auswahl an Sorten, freundliches Personal und eine gemütliche Atmosphäre. Sehr zu empfehlen!"</p>
+        <div class="review-tags"><span>Auswahl ★★★★★</span><span>Empfohlen ✅</span></div>
+      </div>
+
+    </div>
+    <div class="reviews-cta reveal">
+      <a href="https://www.google.com/maps/place/Two+Monkeys+Bar/@49.9923784,8.4099457,560m/data=!3m1!1e3!4m8!3m7!1s0x47bd992e10b4966d:0xb6ff8519909f8ed0!8m2!3d49.9923784!4d8.4125206!9m1!1b1!16s%2Fg%2F11bzv2fr9t?entry=ttu&g_ep=EgoyMDI2MDUxMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-outline">Alle Bewertungen auf Google lesen ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="location-inner">
+    <div class="location-map reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1119.8!2d8.4099457!3d49.9923784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd992e10b4966d%3A0xb6ff8519909f8ed0!2sTwo%20Monkeys%20Bar!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="location-details reveal">
+      <div class="section-label">Anfahrt</div>
+      <h2 class="section-title" style="margin-bottom:2.5rem;">Besuche uns bei<br><em>Two Monkeys</em></h2>
+      <div class="location-detail">
+        <div class="loc-icon">📍</div>
+        <div class="loc-info">
+          <h4>Adresse</h4>
+          <p>Marktstraße 38<br>65428 Rüsselsheim am Main</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="loc-icon">🕐</div>
+        <div class="loc-info">
+          <h4>Öffnungszeiten</h4>
+          <p>Mo–Do: 14:00 – 01:00 Uhr<br>Fr–Sa: 14:00 – 03:00 Uhr<br>Sonntag: 17:00 – 01:00 Uhr</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="loc-icon">📞</div>
+        <div class="loc-info">
+          <h4>Kontakt &amp; Reservierungen</h4>
+          <p><a href="tel:+4961427987373">+49 6142 7987373</a><br>
+          <a href="mailto:twomonkeysbar@gmail.com">twomonkeysbar@gmail.com</a><br>
+          Walk-ins jederzeit willkommen</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="loc-icon">📲</div>
+        <div class="loc-info">
+          <h4>Folge uns</h4>
+          <p><a href="https://www.instagram.com/twomonkeysbar" target="_blank">@twomonkeysbar</a> auf Instagram</p>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/place/Two+Monkeys+Bar/@49.9923784,8.4099457" target="_blank" class="btn-primary" style="display:inline-block;margin-top:1.5rem;">Route berechnen ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo-block">
+      <div class="footer-logo"><em>Two</em> <span>Monkeys</span></div>
+      <div class="footer-slogan">„Together we smoke better."</div>
+    </div>
+    <div class="footer-center">
+      <a href="#" class="btn-reserve-footer" onclick="openModal(event)">🪑 Tisch reservieren</a>
+      <div class="footer-contact">
+        <span>📍 Marktstraße 38, 65428 Rüsselsheim</span>
+        <span>📞 <a href="tel:+4961427987373">+49 6142 7987373</a></span>
+        <span>✉️ <a href="mailto:twomonkeysbar@gmail.com">twomonkeysbar@gmail.com</a></span>
+      </div>
+    </div>
+    <div class="footer-social-block">
+      <div class="footer-social-label">Folge uns</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/twomonkeysbar" target="_blank" class="social-btn social-ig" title="Instagram @twomonkeysbar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @twomonkeysbar
+        </a>
+        <a href="https://www.facebook.com/p/Two-Monkeys-100054359058139/" target="_blank" class="social-btn social-fb" title="Facebook Two Monkeys">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+        <a href="https://www.google.com/maps/place/Two+Monkeys+Bar/@49.9923784,8.4099457" target="_blank" class="social-btn social-gm" title="Google Maps">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C7.802 0 4 3.403 4 7.602 4 11.8 7.469 16.812 12 24c4.531-7.188 8-12.2 8-16.398C20 3.403 16.199 0 12 0zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Two Monkeys Shisha Bar · Rüsselsheim · Alle Rechte vorbehalten</div>
+  </div>
+</footer>
+<!-- LEGAL FOOTER -->
+<div class="legal-bar">
+  <div class="legal-links" style="display:flex;justify-content:center;align-items:center;gap:1rem;width:100%;flex-wrap:wrap;">
+    <a href="javascript:void(0)" onclick="openLegal('impressum')">Impressum</a>
+    <span class="legal-divider">·</span>
+    <a href="javascript:void(0)" onclick="openLegal('datenschutz')">Datenschutz</a>
+    <span class="legal-divider">·</span>
+    <a href="javascript:void(0)" onclick="openLegal('agb')">AGB</a>
+    <span class="legal-divider">·</span>
+    <a href="javascript:void(0)" onclick="openLegal('cookies')">Cookie-Richtlinie</a>
+  </div>
+</div>
+
+<!-- LEGAL MODAL -->
+<div id="legalModal" class="modal-overlay" onclick="closeLegalOutside(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeLegal()">✕</button>
+    <div id="legalContent"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
